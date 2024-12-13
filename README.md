@@ -1,6 +1,6 @@
 # Random Recipe Finder
 
-I've completed the js for **Random Recipe Finder** and fetching random recipes from TheMealDB API and i added reload button when the recipe shown, just for convenience.
+I've completed the js for **Random Recipe Finder** and fetching random recipes from TheMealDB API and i added reload button when the recipe shown and scroll to top button when the page is too long, just for convenience.
 
 You can find random recipes by clicking **Get Random Recipe Button**. There will also be instructions to make the food.
 
