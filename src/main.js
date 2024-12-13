@@ -164,7 +164,7 @@ function updateResponsiveFontSize(element) {
     if (window.innerWidth <= 768) {
       element.style.fontSize = '7vw';
     } else {
-      element.style.fontSize = '3vw';
+      element.style.fontSize = '2vw';
     }
   }
 
