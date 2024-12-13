@@ -100,7 +100,7 @@ function createReloadButton(container) {
   reloadBtn.style.cssText = `
     position: absolute;
     top: 10px;
-    right: 10px;
+    right: 0;
     margin: 0;
     z-index: 1;
     background: none;
@@ -113,7 +113,7 @@ function createReloadButton(container) {
   });
 
   container.appendChild(reloadBtn);
-  addResponsiveFontSize(reloadBtn);
+  updateResponsiveFontSize(reloadBtn);
 }
 
 // Function to scroll to the top of the page
@@ -122,9 +122,9 @@ function createScrollToTopButton(container) {
   const button = document.createElement('button');
   button.textContent = '▲'; // Up arrow letter
   button.style.cssText = `
-    position: fixed;
+    position: absolute;
     bottom: 20px;
-    right: 30px;
+    right: 15px;
     cursor: pointer;
     display: none;
     width: 20px;
@@ -138,7 +138,8 @@ function createScrollToTopButton(container) {
   });
 
   container.appendChild(button);
-  addResponsiveFontSize(button);
+  updateResponsiveFontSize(button);
+  updateResponsivePosition(button);
   console.log('Button appended to container:', button);
 
   // Show the button when there is less than a fourth of the page left
@@ -158,12 +159,12 @@ function createScrollToTopButton(container) {
 }
 
 // Function to add responsive font size
-function addResponsiveFontSize(element) {
+function updateResponsiveFontSize(element) {
   function updateFontSize() {
     if (window.innerWidth <= 768) {
       element.style.fontSize = '7vw';
     } else {
-      element.style.fontSize = '2vw';
+      element.style.fontSize = '3vw';
     }
   }
 
@@ -172,4 +173,23 @@ function addResponsiveFontSize(element) {
 
   // Add the event listener to update the font size on window resize
   window.addEventListener('resize', updateFontSize);
+}
+
+// Function to add responsive position
+function updateResponsivePosition(element) {
+  function updateElementPosition() {
+    if (window.innerWidth <= 768) {
+      element.style.position = 'fixed';
+      element.style.right = '30px';
+    } else {
+      element.style.position = 'absolute';
+      element.style.right = '15px';
+    }
+  }
+
+  // Call the updateElementPosition function initially
+  updateElementPosition();
+
+  // Add the event listener to update the position on window resize
+  window.addEventListener('resize', updateElementPosition);
 }
