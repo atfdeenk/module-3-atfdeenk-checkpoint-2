@@ -122,9 +122,9 @@ function createScrollToTopButton(container) {
   const button = document.createElement('button');
   button.textContent = '▲'; // Up arrow letter
   button.style.cssText = `
-    position: absolute;
+    position: fixed;
     bottom: 20px;
-    right: 15px;
+    right: 30px;
     cursor: pointer;
     display: none;
     width: 20px;
