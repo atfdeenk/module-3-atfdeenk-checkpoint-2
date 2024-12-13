@@ -45,7 +45,12 @@ function updateRecipeInstructions(recipe) {
   `;
   const instructions = recipe.strInstructions
     .split(/[.\r\n]+/)
-    .filter((instruction) => instruction.trim().length > 1);
+    .filter((instruction) => {
+      const trimmedInstruction = instruction.trim();
+      return (
+        trimmedInstruction.length > 1 && !trimmedInstruction.match(/^STEP \d+/i)
+      );
+    });
   instructions.forEach((instruction) => {
     const listItem = document.createElement('li');
     listItem.style.cssText = `
