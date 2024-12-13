@@ -64,7 +64,7 @@ function updateDOM(recipe) {
   updateRecipeImage(recipe);
   updateRecipeTitle(recipe);
   updateRecipeInstructions(recipe);
-  // getRecipeBtn.style.display = 'none';
+  getRecipeBtn.style.display = 'none';
 }
 
 // Event listener for button click and API call
