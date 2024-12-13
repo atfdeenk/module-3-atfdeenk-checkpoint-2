@@ -13,6 +13,7 @@ document.body.style.height = 'auto';
 
 // Set the margin of the recipe container to 5%
 container.style.margin = '5%';
+container.style.position = 'relative'; // Set position to relative to allow for absolute positioning of the reload button
 
 // Function to update the recipe image
 function updateRecipeImage(recipe) {
@@ -70,6 +71,22 @@ function updateDOM(recipe) {
   updateRecipeTitle(recipe);
   updateRecipeInstructions(recipe);
   getRecipeBtn.style.display = 'none';
+
+  // Create a reload button
+  const reloadBtn = document.createElement('button');
+  reloadBtn.textContent = 'Reload';
+  reloadBtn.style.cssText = `
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    margin: 0;
+  `;
+  container.appendChild(reloadBtn);
+
+  // Add event listener to reload button
+  reloadBtn.addEventListener('click', () => {
+    window.location.reload();
+  });
 }
 
 // Event listener for button click and API call
