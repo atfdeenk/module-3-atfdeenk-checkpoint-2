@@ -15,6 +15,9 @@ document.body.style.height = 'auto';
 container.style.margin = '5%';
 container.style.position = 'relative'; // Set position to relative to allow for absolute positioning of the reload button
 
+// Set the margin-top of the h1 element to 50px
+document.querySelector('h1').style.marginTop = '50px';
+
 // Function to update the recipe image
 function updateRecipeImage(recipe) {
   recipeImage.src = recipe.strMealThumb;
@@ -71,22 +74,8 @@ function updateDOM(recipe) {
   updateRecipeTitle(recipe);
   updateRecipeInstructions(recipe);
   getRecipeBtn.style.display = 'none';
-
-  // Create a reload button
-  const reloadBtn = document.createElement('button');
-  reloadBtn.textContent = 'Reload';
-  reloadBtn.style.cssText = `
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    margin: 0;
-  `;
-  container.appendChild(reloadBtn);
-
-  // Add event listener to reload button
-  reloadBtn.addEventListener('click', () => {
-    window.location.reload();
-  });
+  createReloadButton(container);
+  createScrollToTopButton(container);
 }
 
 // Event listener for button click and API call
@@ -104,3 +93,83 @@ document.addEventListener('click', async (event) => {
     }
   }
 });
+
+function createReloadButton(container) {
+  const reloadBtn = document.createElement('button');
+  reloadBtn.innerHTML = '&#x21bb;';
+  reloadBtn.style.cssText = `
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    margin: 0;
+    z-index: 1;
+    background: none;
+    color: black;
+    cursor: pointer;
+  `;
+
+  reloadBtn.addEventListener('click', () => {
+    window.location.reload();
+  });
+
+  container.appendChild(reloadBtn);
+  addResponsiveFontSize(reloadBtn);
+}
+
+// Function to scroll to the top of the page
+function createScrollToTopButton(container) {
+  console.log('Creating Scroll to Top button...');
+  const button = document.createElement('button');
+  button.textContent = '▲'; // Up arrow letter
+  button.style.cssText = `
+    position: absolute;
+    bottom: 20px;
+    right: 15px;
+    cursor: pointer;
+    display: none;
+    width: 20px;
+    padding: 0px;
+    background: none;
+    color: black;
+  `;
+
+  button.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  container.appendChild(button);
+  addResponsiveFontSize(button);
+  console.log('Button appended to container:', button);
+
+  // Show the button when there is less than a fourth of the page left
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    const windowHeight = window.innerHeight;
+    const threshold = windowHeight / 4;
+
+    if (scrollY >= threshold) {
+      button.style.display = 'block';
+    } else {
+      button.style.display = 'none';
+    }
+    console.log(windowHeight);
+    console.log(threshold);
+  });
+}
+
+// Function to add responsive font size
+function addResponsiveFontSize(element) {
+  function updateFontSize() {
+    if (window.innerWidth <= 768) {
+      element.style.fontSize = '7vw';
+    } else {
+      element.style.fontSize = '2vw';
+    }
+  }
+
+  // Call the updateFontSize function initially
+  updateFontSize();
+
+  // Add the event listener to update the font size on window resize
+  window.addEventListener('resize', updateFontSize);
+}
