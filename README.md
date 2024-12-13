@@ -1,12 +1,10 @@
 # Random Recipe Finder
 
-I've completed the js for **Random Recipe Finder**. And do excuse me for I choose **getRandomRecipe** as the name of main Function instead of **onRandomRecipe**, because i find it more suitable for this specific assignment.
+I've completed the js for **Random Recipe Finder** and fetching random recipes from TheMealDB API .
 
-You can find a 10 random recipes by clicking **Get Random Recipe Button**. There will also be instructions to make the food.
+You can find random recipes by clicking **Get Random Recipe Button**. There will also be instructions to make the food.
 
 Visit the [link](https://noob-recipe-finder.netlify.app/) and find your recipe!
-
-___Attention!___  **You'll never find the same recipe until you see all 10 of them. Even if YOU refreshed the browser!**
 
 ## Assignment Info
 
